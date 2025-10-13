@@ -24,11 +24,15 @@ jobs:
         run: |
           d=`date '+%Y-%m-%dT%H:%M:%SZ'`
           echo $d > LAST_UPDATED
+
+      - name: Pull latest changes
+        run: |
+          git pull origin master --rebase
           
       - name: Commit changes
         run: |
           git config --local user.email "${{ github.repository_owner }}@users.noreply.github.com"
-          git config --local user.name "TheExploration"
+          git config --local user.name "${{ github.repository_owner }}"
           git add -A
           
           arr[0]="chore(bot): 😂 auto commit"
