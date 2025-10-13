@@ -19,15 +19,14 @@ jobs:
         with:
          persist-credentials: false
          fetch-depth: 0
-
+      - name: Pull latest changes
+        run: |
+          git pull origin master --rebase
       - name: Modify last update
         run: |
           d=`date '+%Y-%m-%dT%H:%M:%SZ'`
           echo $d > LAST_UPDATED
 
-      - name: Pull latest changes
-        run: |
-          git pull origin master --rebase
           
       - name: Commit changes
         run: |
